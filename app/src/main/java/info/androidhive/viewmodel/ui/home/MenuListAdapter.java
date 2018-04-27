@@ -51,6 +51,9 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
         @BindView(R.id.description)
         TextView description;
 
+        @BindView(R.id.price)
+        TextView price;
+
         @BindView(R.id.thumbnail)
         ImageView thumbnail;
 
@@ -62,6 +65,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
         void bind(MenuItem menuItem) {
             name.setText(menuItem.getName());
             description.setText(menuItem.getDescription());
+            price.setText("₹" + menuItem.getPrice());
             Glide.with(context)
                     .load(menuItem.getThumbnail())
                     .into(thumbnail);
