@@ -7,16 +7,16 @@ import java.util.List;
 
 import info.androidhive.viewmodel.model.MenuItem;
 
-public class MenuItemViewModel extends ViewModel {
-    private MenuItemRepository repository;
+public class MenuListViewModel extends ViewModel {
+    private MenuListRepository repository;
     private LiveData<List<MenuItem>> menuItems;
 
-    public MenuItemViewModel() {
-        repository = new MenuItemRepository();
+    public MenuListViewModel() {
+        repository = new MenuListRepository();
     }
 
     public LiveData<List<MenuItem>> getMenuItems() {
-        // fetch data only when it's null
+        // Fetch data only when it's null
         if (menuItems == null) {
             menuItems = repository.getMenu();
         }

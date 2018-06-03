@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class MenuListFragment extends Fragment {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    MenuItemViewModel viewModel;
+    MenuListViewModel viewModel;
     Unbinder unbinder;
     MenuListAdapter mAdapter;
 
@@ -56,20 +55,24 @@ public class MenuListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         mAdapter = new MenuListAdapter(getActivity());
 
-        viewModel = ViewModelProviders.of(getActivity()).get(MenuItemViewModel.class);
+        // getting ViewModel instance
+        viewModel = ViewModelProviders.of(getActivity()).get(MenuListViewModel.class);
 
+        // preparing RecyclerView
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        // Observing to list items
         viewModel.getMenuItems().observe(this, new Observer<List<MenuItem>>() {
             @Override
             public void onChanged(@Nullable List<MenuItem> menuItems) {
+                // displaying item in recycler view
                 mAdapter.setItems(menuItems);
             }
         });
@@ -78,6 +81,7 @@ public class MenuListFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        
         if (unbinder != null) {
             unbinder.unbind();
             unbinder = null;

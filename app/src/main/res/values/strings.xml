@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ViewModel</string>
     <string name="action_settings">Settings</string>
+
+    <!-- price label with 2 decimal rounding -->
+    <string name="price">₹ %1$.2f</string>
+    <string name="menu">Menu</string>
 </resources>

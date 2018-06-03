@@ -47,13 +47,10 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.name)
         TextView name;
-
         @BindView(R.id.description)
         TextView description;
-
         @BindView(R.id.price)
         TextView price;
-
         @BindView(R.id.thumbnail)
         ImageView thumbnail;
 
@@ -64,14 +61,20 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
 
         void bind(MenuItem menuItem) {
             name.setText(menuItem.getName());
+
             description.setText(menuItem.getDescription());
-            price.setText("₹" + menuItem.getPrice());
+
+            price.setText(context.getString(R.string.price, menuItem.getPrice()));
+
             Glide.with(context)
                     .load(menuItem.getThumbnail())
                     .into(thumbnail);
         }
     }
 
+    /**
+     * Replacing the adapter data set and refreshing the list
+     */
     public void setItems(List<MenuItem> menuItems) {
         itemList.clear();
         itemList.addAll(menuItems);

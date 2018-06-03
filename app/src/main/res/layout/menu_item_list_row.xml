@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/padd_10">
+    android:padding="@dimen/dimen_10">
 
     <ImageView
         android:id="@+id/thumbnail"
@@ -20,8 +20,8 @@
         android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
         android:maxLines="1"
-        android:textColor="@color/item_name"
-        android:textSize="17dp" />
+        android:textColor="@color/itemName"
+        android:textSize="@dimen/itemName" />
 
     <TextView
         android:id="@+id/description"
@@ -31,7 +31,7 @@
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/thumbnail"
         android:textColor="@color/description"
-        android:textSize="12dp" />
+        android:textSize="@dimen/itemDescription" />
 
     <TextView
         android:id="@+id/price"

@@ -12,7 +12,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WebClient {
-    private static String TAG = WebClient.class.getSimpleName();
     private static final String BASE_URL = "https://api.androidhive.info/json/";
     private static Retrofit retrofit = null;
     private static int REQUEST_TIMEOUT = 60;
@@ -31,6 +30,7 @@ public class WebClient {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
+        
         return retrofit;
     }
 
@@ -60,10 +60,5 @@ public class WebClient {
         });
 
         okHttpClient = httpClient.build();
-    }
-
-    public static void resetApiClient() {
-        retrofit = null;
-        okHttpClient = null;
     }
 }
